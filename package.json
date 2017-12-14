@@ -29,9 +29,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm build && node server.js",
-    "dev": "webpack-dev-server --hot",
-    "build": "webpack --config ./webpack.config.js --progress --colors"
+    "start": "webpack --config ./webpack.config.js --progress --colors && node server.js",
+    "dev": "webpack-dev-server --hot"
   },
   "repository": {
     "type": "git",
