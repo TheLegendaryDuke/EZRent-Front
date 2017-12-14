@@ -19,7 +19,8 @@ var config = {
                 loader: 'babel-loader',
 
                 query: {
-                    presets: ['env', 'react']
+                    plugins: ["transform-class-properties"],
+                    presets: ['stage-0', 'react', 'env']
                 }
             }
         ]
