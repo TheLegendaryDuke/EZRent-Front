@@ -18,18 +18,18 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "semantic-ui-react": "^0.77.1",
-    "webpack-dev-server": "^2.9.5"
+    "webpack-dev-server": "^2.9.5",
+    "webpack": "^3.10.0"
   },
   "devDependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "webpack": "^3.10.0"
+    "babel-preset-stage-0": "^6.24.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node node_modules/webpack/bin/webpack.js --config ./webpack.config.js --progress --colors && node server.js",
+    "start": "webpack --config ./webpack.config.js --progress --colors && node server.js",
     "dev": "webpack-dev-server --hot"
   },
   "repository": {
