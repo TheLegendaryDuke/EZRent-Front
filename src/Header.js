@@ -14,13 +14,14 @@ export default class Header extends React.Component {
 
         return (
             <Menu>
-                <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}>
+                <Menu.Item name='home' active={activeItem === 'logo'} onClick={this.handleItemClick}>
+                    <img src={"../icon.PNG"}/>
                 </Menu.Item>
                 <Menu.Menu position='right'>
                     <Menu.Item>
 
                     </Menu.Item>
-                    <Menu.Item name='logout' active={activeItem === 'logout'} onClick={this.handleItemClick}/>
+                    <Menu.Item name='logout' active={activeItem === 'home'} onClick={this.handleItemClick}/>
                 </Menu.Menu>
             </Menu>
         );
