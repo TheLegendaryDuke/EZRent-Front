@@ -1,14 +1,11 @@
 import path from "path";
 import express from "express";
-import webpack from "webpack";
-import * as config from "./webpack.dev.config.js";
 
 const app           = express(),
     DIST_DIR      = __dirname,
     HTML_FILE     = path.join(DIST_DIR, "index.html"),
     isDevelopment = process.env.NODE_ENV !== "production",
-    DEFAULT_PORT  = 3000,
-    compiler      = webpack(config);
+    DEFAULT_PORT  = 3000;
 
 app.set("port", process.env.PORT || DEFAULT_PORT);
 

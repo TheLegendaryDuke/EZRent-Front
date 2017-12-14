@@ -2,7 +2,7 @@ var config = {
     entry: './src/index.js',
 
     output: {
-        path:'/',
+        path: __dirname,
         filename: 'bundle.js'
     },
 
