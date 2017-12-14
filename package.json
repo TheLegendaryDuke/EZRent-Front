@@ -29,7 +29,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --config ./webpack.config.js --progress --colors && node server.js",
+    "start": "node node_modules/webpack/bin/webpack.js --config ./webpack.config.js --progress --colors && node server.js",
     "dev": "webpack-dev-server --hot"
   },
   "repository": {
