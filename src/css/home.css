@@ -1,0 +1,72 @@
+div.accordion {
+    margin: 0;
+    flex: 1 1 auto;
+    background-color: black;
+    overflow: hidden;
+}
+
+div.accordion section {
+    position: relative;
+    display: block;
+    float: left;
+    width: 20%;
+    height: 100%;
+    margin: 0;
+}
+
+div.accordion section h2
+{
+    position: absolute;
+    font-size: 1em;
+    font-weight: bold;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    color: #ddd;
+}
+
+div.accordion section h2 a
+{
+    display: block;
+    width: 100%;
+    line-height: 2em;
+    text-decoration: none;
+    color: inherit;
+    outline: 0 none;
+}
+
+div.accordion section:target
+{
+    width: 80%;
+    height: 100%;
+    padding: 0;
+    color: #333;
+    background-color: #fff;
+}
+
+div.accordion section:target h2
+{
+    position: static;
+    font-size: 1.3em;
+    text-indent: 0;
+    color: #333;
+}
+
+div.accordion section:target div {
+    visibility: visible;
+}
+
+div.accordion section div {
+    visibility: hidden;
+}
+
+div.accordion section,
+div.accordion section h2
+{
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}

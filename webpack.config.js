@@ -22,6 +22,10 @@ var config = {
                     plugins: ["transform-class-properties"],
                     presets: ['stage-0', 'react', 'env']
                 }
+            },
+            {
+                test: /\.css$/,
+                loaders: ['style-loader', 'css-loader'],
             }
         ]
     }
