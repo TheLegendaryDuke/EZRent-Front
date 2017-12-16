@@ -3,14 +3,16 @@ div.accordion {
     flex: 1 1 auto;
     background-color: black;
     overflow: hidden;
+    display: flex;
+    flex-direction: row;
 }
 
 div.accordion section {
     position: relative;
     display: block;
     float: left;
-    width: 20%;
-    height: 100%;
+    flex: 1 1 auto;
+    width: 20% !important;
     margin: 0;
 }
 
@@ -38,8 +40,8 @@ div.accordion section h2 a
 
 div.accordion section:target
 {
-    width: 80%;
-    height: 100%;
+    width: 80% !important;
+    flex: 1 1 auto;
     padding: 0;
     color: #333;
     background-color: #fff;
