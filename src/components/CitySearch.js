@@ -32,7 +32,10 @@ export default class CitySearch extends Component {
 
     resetComponent = () => this.setState({ isLoading: false, results: [], value: '' });
 
-    handleResultSelect = (e, { result }) => this.setState({ value: result.title });
+    handleResultSelect = (e, { result }) => {
+        this.setState({ value: result.title });
+        window.location.href = window.location.href.split('#')[0] + "mal/" + result.title;
+    };
 
     handleSearchChange = (e, { value }) => {
         this.setState({ isLoading: true, value: value });

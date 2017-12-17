@@ -3,12 +3,14 @@ var config = {
 
     output: {
         path: __dirname,
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/'
     },
 
     devServer: {
         inline: true,
-        port: 3000
+        port: 3000,
+        historyApiFallback: true
     },
 
     module: {
