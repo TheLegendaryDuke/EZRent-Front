@@ -1,21 +1,31 @@
 import React, { Component } from 'react'
 import '../css/home.css'
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+import CitySearch from "./CitySearch";
+
+
+const citiesQuery = gql`
+            query {
+              cities {
+                name
+              }
+            }
+        `;
+const CitySearchWithData = graphql(citiesQuery)(CitySearch);
 
 export default class Home extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <div className="accordion">
                 <section id="tenant">
                     <h2><a href="#tenant">I'm looking for a place</a></h2>
                     <div>
-                        {/*<form action={"/mal"} method="get">*/}
-                            {/*<!--This should be a search-bar with autocomplete-->*/}
-                            {/*<div class="input-field">*/}
-                                {/*<input name="city" class="autocomplete" id="autocomplete-input" type="text" />*/}
-                                {/*<label for="autocomplete-input">Enter a city</label>*/}
-                            {/*</div>*/}
-                            {/*<input type="submit" value="go"/>*/}
-                        {/*</form>*/}
+                        <CitySearchWithData/>
                     </div>
                 </section>
                 <section id="landlord">
