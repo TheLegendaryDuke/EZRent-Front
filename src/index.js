@@ -9,7 +9,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { API_ROOT } from '../api-config';
 import gql from "graphql-tag";
 import {graphql} from "react-apollo/index";
-import CitySearch from "./components/Home/CitySearch";
+import 'semantic-ui-css/semantic.min.css';
 
 const client = new ApolloClient({
     link: new HttpLink({ uri: API_ROOT }),

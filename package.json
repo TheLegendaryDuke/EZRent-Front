@@ -16,6 +16,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.7",
     "express": "^4.16.2",
+    "file-loader": "^1.1.6",
     "graphql": "^0.11.7",
     "graphql-tag": "^2.6.0",
     "lodash": "^4.17.4",
@@ -24,8 +25,10 @@
     "react-dom": "^16.2.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.77.1",
     "style-loader": "^0.19.1",
+    "url-loader": "^0.6.2",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.5"
   },

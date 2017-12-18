@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import { Input, Menu } from 'semantic-ui-react'
+import MALSearch from "./MALSearch";
 
 export default class MALBar extends Component {
     constructor(props) {
         super(props);
-        this.state = {city: props.city}
     }
 
     render() {
         return(
             <Menu style={{borderTopLeftRadius: 0, borderTopRightRadius: 0}}>
                 <Menu.Item>
-
+                    <MALSearch {...this.props}/>
                 </Menu.Item>
             </Menu>
         )

@@ -1,38 +1,34 @@
 import React, { Component } from 'react'
-import SearchImpl from '../templates/SearchImpl'
+import TADropDown from '../templates/TADropDown'
 
 function map(cities) {
     var items = [];
     for(var i = 0; i < cities.length; i++) {
         var city = cities[i];
-        items.push({title: city.name});
+        items.push({key: city.name, value: city.name, text: city.name});
     }
     return items;
 }
 
-export default class CitySearch extends Component {
+export default class MALSearch extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            data: props.data.loading ? [] : map(props.data.cities),
-            isLoading: props.data.loading
+            data: map(props.cities)
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        this.state.isLoading = nextProps.data.loading;
-        if(!nextProps.data.loading) {
-            this.state.data = map(nextProps.data.cities)
-        }
+        this.state.data = map(nextProps.cities)
     }
 
     render() {
         return(
-            <SearchImpl
-                isLoading = {this.state.isLoading}
+            <TADropDown
                 data = {this.state.data}
-                link = {window.location.href.split('#')[0] + "mal/"}
+                link = {"/mal/"}
+                prompt = "Select a city"
             />
         );
     }

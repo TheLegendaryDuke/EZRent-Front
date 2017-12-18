@@ -7,14 +7,11 @@ import CitySearch from "./CitySearch";
 export default class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {cities: props.cities, isLoading: props.isLoading}
+        this.state = {cities: props.cities}
     }
 
     componentWillReceiveProps(nextProps) {
-        this.state.isLoading = nextProps.isLoading;
-        if(!nextProps.isLoading) {
-            this.state.cities = nextProps.cities
-        }
+        this.state.cities = nextProps.cities
     }
 
     render() {
