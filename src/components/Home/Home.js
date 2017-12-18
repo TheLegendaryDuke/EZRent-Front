@@ -1,22 +1,20 @@
 import React, { Component } from 'react'
-import '../css/home.css'
+import '../../css/home.css'
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import CitySearch from "./CitySearch";
 
-
-const citiesQuery = gql`
-            query {
-              cities {
-                name
-              }
-            }
-        `;
-const CitySearchWithData = graphql(citiesQuery)(CitySearch);
-
 export default class Home extends Component {
     constructor(props) {
         super(props);
+        this.state = {cities: props.cities, isLoading: props.isLoading}
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.state.isLoading = nextProps.isLoading;
+        if(!nextProps.isLoading) {
+            this.state.cities = nextProps.cities
+        }
     }
 
     render() {
@@ -25,7 +23,7 @@ export default class Home extends Component {
                 <section id="tenant">
                     <h2><a href="#tenant">I'm looking for a place</a></h2>
                     <div>
-                        <CitySearchWithData/>
+                        <CitySearch cities={this.state.cities}/>
                     </div>
                 </section>
                 <section id="landlord">

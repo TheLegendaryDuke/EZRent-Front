@@ -2,31 +2,22 @@ import React, { Component } from 'react'
 import {Search} from 'semantic-ui-react';
 import _ from 'lodash'
 
-function map(cities) {
-    var items = [];
-    for(var i = 0; i < cities.length; i++) {
-        var city = cities[i];
-        items.push({title: city.name});
-    }
-    return items;
-}
-
-export default class CitySearch extends Component {
+export default class SearchImpl extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            cities: props.data.loading ? [] : map(props.data.cities),
-            isLoading: props.data.loading,
+            data: props.data,
+            isLoading: props.isLoading,
             results: [],
             value: ''
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        this.state.isLoading = nextProps.data.loading;
-        if(!nextProps.data.loading) {
-            this.state.cities = map(nextProps.data.cities)
+        this.state.isLoading = nextProps.isLoading;
+        if(!nextProps.isLoading) {
+            this.state.data = nextProps.data;
         }
     }
 
@@ -34,7 +25,7 @@ export default class CitySearch extends Component {
 
     handleResultSelect = (e, { result }) => {
         this.setState({ value: result.title });
-        window.location.href = window.location.href.split('#')[0] + "mal/" + result.title;
+        window.location.href = this.props.link + result.title;
     };
 
     handleSearchChange = (e, { value }) => {
@@ -48,7 +39,7 @@ export default class CitySearch extends Component {
 
             this.setState({
                 isLoading: false,
-                results: _.filter(this.state.cities, isMatch)
+                results: _.filter(this.state.data, isMatch)
             });
         }, 500)
     };
@@ -61,7 +52,6 @@ export default class CitySearch extends Component {
                 onSearchChange={this.handleSearchChange}
                 results={this.state.results}
                 value={this.state.value}
-                {...this.props}
             />
         );
     }

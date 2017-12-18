@@ -6,7 +6,8 @@ const navBarStyle = {
     margin: 0,
     flexGrow: 0,
     flexShrink: 1,
-    flexBasis: 'auto'
+    flexBasis: 'auto',
+    borderRadius: 0
 };
 
 export default class Header extends React.Component {
