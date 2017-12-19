@@ -21,6 +21,10 @@ const citiesQuery = gql`
               cities {
                 name
               }
+              user {
+                name
+                email
+              }
             }
         `;
 const AppWithData = graphql(citiesQuery)(App);

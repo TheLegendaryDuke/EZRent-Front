@@ -29,6 +29,7 @@ export default class MALSearch extends Component {
                 data = {this.state.data}
                 link = {"/mal/"}
                 prompt = "Select a city"
+                value = {this.props.city}
             />
         );
     }

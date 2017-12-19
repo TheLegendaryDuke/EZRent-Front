@@ -14,7 +14,7 @@ export default class MAL extends Component {
     render() {
         return(
             <div>
-                <MALBar {...this.props}/>
+                <MALBar {...this.props} city={this.state.city}/>
                 <MALMain city={this.state.city}/>
             </div>
         )

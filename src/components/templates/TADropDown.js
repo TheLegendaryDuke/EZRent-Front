@@ -8,23 +8,25 @@ export default class TADropDown extends Component {
         this.state = {
             data: props.data,
             prompt: props.prompt,
-            link: props.link
+            link: props.link,
+            value: props.value
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        this.state.data = nextProps.data;
+            this.state.data = nextProps.data;
     }
 
     onClickHandler = (e, data) => {
-        if(this.state.link) {
+        if(this.state.link && data.value !== this.state.value) {
             window.location.href = this.props.link + data.value;
+            this.state.value = data.value;
         }
     };
 
     render() {
         return(
-            <Dropdown placeholder={this.state.prompt} search selection options={this.state.data} onChange={this.onClickHandler}/>
+            <Dropdown placeholder={this.state.prompt} search selection options={this.state.data} onChange={this.onClickHandler} defaultValue={this.state.value}/>
         );
     }
 }
