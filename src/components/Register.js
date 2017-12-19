@@ -2,12 +2,16 @@ import React, {Component} from 'react'
 import { Grid, Divider, Button, Checkbox, Form, Input, Icon } from 'semantic-ui-react'
 
 export default class Register extends Component {
+    register() {
+        alert("clicked!");
+    }
+
     render() {
         return(
             <Grid columns={2} style={{flex: 1}}>
                 <Grid.Column width={8}>
                     <h2>Register with your email</h2>
-                    <Form>
+                    <Form onSubmit={this.register}>
                         <Form.Field required>
                             <label>Username</label>
                             <Input icon={'user'} iconPosition={'left'} placeholder={'Username'}/>
