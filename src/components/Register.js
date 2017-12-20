@@ -36,7 +36,7 @@ export default class Register extends Component {
                 </Grid.Column>
                 <Divider style={{position:'relative', margin:0, padding:0}} vertical>Or</Divider>
                 <Grid.Column width={7}>
-                    <h2>Register using social logins</h2>
+                    <h2>Use your social account</h2>
                     <Button color='facebook'>
                         <Icon name='facebook' /> Facebook
                     </Button>

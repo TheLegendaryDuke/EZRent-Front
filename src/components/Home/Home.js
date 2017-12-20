@@ -24,7 +24,7 @@ export default class Home extends Component {
                 <section id="tenant" style={sectionStyle}>
                     <h2><a href="#tenant">I'm looking for a place</a></h2>
                     <div>
-                        <CitySearch cities={this.state.cities}/>
+                        <CitySearch cities={this.state.cities} {...this.props}/>
                     </div>
                 </section>
                 <section id="landlord" style={sectionStyle}>

@@ -2,6 +2,7 @@ import {Link} from 'react-router-dom'
 import React, {Component} from 'react'
 import {Input, Menu} from 'semantic-ui-react'
 import UserMenuModule from './UserMenuModule'
+import { withRouter } from 'react-router'
 
 const navBarStyle = {
     margin: 0,
@@ -11,10 +12,10 @@ const navBarStyle = {
     borderRadius: 0
 };
 
-export default class Header extends React.Component {
+class Header extends React.Component {
     handleItemClick = (e, {name}) => {
         // this.setState({activeItem: name});
-        window.location.href = "/";
+        this.props.history.push("/");
     };
 
     render() {
@@ -28,6 +29,8 @@ export default class Header extends React.Component {
         );
     }
 }
+
+export default withRouter(Header)
 
 // const Header = () => (<div>Hello Header!</div>);
 //

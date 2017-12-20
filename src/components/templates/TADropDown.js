@@ -19,7 +19,7 @@ export default class TADropDown extends Component {
 
     onClickHandler = (e, data) => {
         if(this.state.link && data.value !== this.state.value) {
-            window.location.href = this.props.link + data.value;
+            this.props.history.push(this.props.link + data.value);
             this.state.value = data.value;
         }
     };

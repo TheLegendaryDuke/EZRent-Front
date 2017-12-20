@@ -27,8 +27,9 @@ export default class CitySearch extends Component {
         return(
             <TADropDown
                 data = {this.state.data}
-                link = {window.location.href.split('#')[0] + "mal/"}
+                link = {"mal/"}
                 prompt = "Select a city"
+                {...this.props}
             />
         );
     }

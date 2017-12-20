@@ -11,3 +11,4 @@ if(hostname === 'localhost') {
 }
 
 export const API_ROOT = `${backendHost}/graphql`;
+export const BACKEND_ROOT = backendHost;
