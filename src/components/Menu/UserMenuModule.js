@@ -1,9 +1,13 @@
 import React, {Component} from 'react'
 import {Dropdown, Icon, Menu} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
+import {BACKEND_ROOT} from "../../../api-config";
+import axios from 'axios'
 
 
 export default class UserMenuModule extends Component {
+    logout = (e) => {window.location.href=BACKEND_ROOT+"/logout"};
+
     render() {
         const user = this.props.user;
 
@@ -14,6 +18,8 @@ export default class UserMenuModule extends Component {
                         <Dropdown.Menu>
                             <Dropdown.Item text={'Profile'}/>
                             <Dropdown.Item text={'Settings'}/>
+                            <Dropdown.Divider />
+                            <Dropdown.Item text={'Logout'} onClick={this.logout}/>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Menu.Menu>

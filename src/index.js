@@ -12,7 +12,7 @@ import {graphql} from "react-apollo/index";
 import 'semantic-ui-css/semantic.min.css';
 
 const client = new ApolloClient({
-    link: new HttpLink({ uri: API_ROOT }),
+    link: new HttpLink({ uri: API_ROOT, credentials: 'include'}),
     cache: new InMemoryCache()
 });
 
