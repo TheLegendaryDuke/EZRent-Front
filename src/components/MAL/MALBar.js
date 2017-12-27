@@ -9,7 +9,7 @@ export default class MALBar extends Component {
 
     render() {
         return(
-            <Menu style={{borderTopLeftRadius: 0, borderTopRightRadius: 0}}>
+            <Menu style={{borderTopLeftRadius: 0, borderTopRightRadius: 0, margin: 0}}>
                 <Menu.Item>
                     <MALSearch {...this.props}/>
                 </Menu.Item>

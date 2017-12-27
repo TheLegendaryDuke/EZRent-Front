@@ -39,7 +39,7 @@ export default class Register extends Component {
             );
         }else {
             const query = gql`
-                mutation {
+                mutation register($email:String!, $username:String!, $password:String!){
                   register(email: $email, username: $username, password: $password) {
                     name
                     email

@@ -34,6 +34,7 @@ export default class Login extends Component {
     };
 
     handleLogin = (e) => {
+        //todo: handle the case "bad credentials"
         this.setState({loading: false});
         const target = e.target;
         const email = target[0].value;

@@ -20,6 +20,8 @@ const citiesQuery = gql`
             query {
               cities {
                 name
+                latitude
+                longitude
               }
               user {
                 name
