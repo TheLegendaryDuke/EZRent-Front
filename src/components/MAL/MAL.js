@@ -8,6 +8,7 @@ function generateDataedComponent(city) {
     const query = gql`
             query buildings($city: String!){
               buildings(city: $city) {
+                id
                 address
                 longitude
                 latitude

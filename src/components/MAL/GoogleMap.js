@@ -6,50 +6,58 @@ class GoogleMap extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showingInfoWindow: false,
-            activeMarker: {},
-            selectedPlace: {}
+            showingInfoWindow: props.showingInfoWindow,
+            activeMarker: props.activeMarker,
+            selectedPlace: props.selectedPlace
         };
 
         // binding this to event-handler functions
-        this.onMarkerClick = this.onMarkerClick.bind(this);
-        this.onMapClicked = this.onMapClicked.bind(this);
         this.generateMarker = this.generateMarker.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            showingInfoWindow: nextProps.showingInfoWindow,
+            activeMarker: nextProps.activeMarker,
+            selectedPlace: nextProps.selectedPlace
+        });
     }
 
     generateMarker = function (building) {
         const {google} = this.props;
 
         if(google) {
+            const smaller = {
+                url: "../../../marker.png",
+                scaledSize: new google.maps.Size(20, 34),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(10, 34)
+            };
+
             const bigger = {
                 url: "../../../marker.png",
                 scaledSize: new google.maps.Size(24, 40.8),
                 origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(0, 0)
+                anchor: new google.maps.Point(12, 40.8)
             };
 
-            return (<Marker name={building.address}
-                            position={{lat: building.latitude, lng: building.longitude}}
-                            onClick={this.onMarkerClick}
-                            icon={bigger}
-            />)
-        }
-    };
-
-    onMarkerClick = function(props, marker, e) {
-        this.setState({
-            selectedPlace: props,
-            activeMarker: marker,
-            showingInfoWindow: true
-        });
-    };
-
-    onMapClicked = function(props) {
-        if (this.state.showingInfoWindow) {
-            this.setState({
-                showingInfoWindow: false,
-                activeMarker: null
-            })
+            if(this.state.selectedPlace && this.state.selectedPlace.name === building.id) {
+                return (<Marker name={building.id}
+                                key={building.id}
+                                address={building.address}
+                                position={{lat: building.latitude, lng: building.longitude}}
+                                onClick={this.props.onMarkerClick}
+                                icon={bigger}
+                />)
+            }else {
+                return (<Marker name={building.id}
+                                key={building.id}
+                                address={building.address}
+                                position={{lat: building.latitude, lng: building.longitude}}
+                                onClick={this.props.onMarkerClick}
+                                icon={smaller}
+                />)
+            }
         }
     };
 
@@ -60,14 +68,14 @@ class GoogleMap extends Component {
                     <Map google={this.props.google} initialCenter={{
                         lat: this.props.city.latitude,
                         lng: this.props.city.longitude
-                    }} onClick={this.onMapClicked}>
+                    }} onClick={this.props.onMapClicked}>
                         {this.props.buildings.map(this.generateMarker)}
 
                         <InfoWindow
                             marker={this.state.activeMarker}
                             visible={this.state.showingInfoWindow}>
                             <div>
-                                <h1>{this.state.selectedPlace.name}</h1>
+                                <h1>{this.state.selectedPlace ? this.state.selectedPlace.address : ""}</h1>
                             </div>
                         </InfoWindow>
                     </Map>
