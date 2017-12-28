@@ -9,6 +9,8 @@ function generateDataedComponent(city) {
             query buildings($city: String!){
               buildings(city: $city) {
                 address
+                longitude
+                latitude
               }
             }
         `;
