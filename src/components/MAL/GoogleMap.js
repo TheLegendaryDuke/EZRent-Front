@@ -18,7 +18,22 @@ class GoogleMap extends Component {
     }
 
     generateMarker = function (building) {
-        return (<Marker name={building.address} position={{lat: building.latitude, lng: building.longitude}} onClick={this.onMarkerClick}/>)
+        const {google} = this.props;
+
+        if(google) {
+            const bigger = {
+                url: "../../../marker.png",
+                scaledSize: new google.maps.Size(24, 40.8),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(0, 0)
+            };
+
+            return (<Marker name={building.address}
+                            position={{lat: building.latitude, lng: building.longitude}}
+                            onClick={this.onMarkerClick}
+                            icon={bigger}
+            />)
+        }
     };
 
     onMarkerClick = function(props, marker, e) {
@@ -39,7 +54,7 @@ class GoogleMap extends Component {
     };
 
     render() {
-        if(this.props.city != null) {
+        if(this.props.city != null && this.props.google) {
             return (
                 <div style={{flex: 1}}>
                     <Map google={this.props.google} initialCenter={{
