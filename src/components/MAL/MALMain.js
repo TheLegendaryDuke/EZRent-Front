@@ -14,6 +14,8 @@ export default class MALMain extends Component {
         // binding this to event-handler functions
         this.onMarkerClick = this.onMarkerClick.bind(this);
         this.onMapClicked = this.onMapClicked.bind(this);
+        this.hover = this.hover.bind(this);
+        this.generateListItem = this.generateListItem.bind(this);
     }
 
     onMarkerClick = function(props, marker, e) {
@@ -37,6 +39,14 @@ export default class MALMain extends Component {
     componentWillReceiveProps(nextProps) {
         this.state.buildings = nextProps.data.buildings;
     }
+
+    hover = function(e) {
+        alert(e.currentTarget.dataset.value);
+    };
+
+    generateListItem = function (building) {
+        return (<List.Item key={building.id}><div onMouseOver={this.hover} data-value={building.id}>{building.address}</div></List.Item>)
+    };
 
     render() {
         var city = null;
@@ -64,9 +74,7 @@ export default class MALMain extends Component {
                 </Grid.Column>
                 <Grid.Column width={5} style={{padding: 0, height: "100%"}}>
                     <List divided style={{overflowY: "scroll", height: "100%"}}>
-                        {/*{this.props.cities.map(function (city) {*/}
-                        {/*return (<List.Item><div key={city.name}>{city.name}</div></List.Item>)*/}
-                        {/*})}*/}
+                        {this.state.buildings.map(this.generateListItem)}
                     </List>
                 </Grid.Column>
             </Grid>
