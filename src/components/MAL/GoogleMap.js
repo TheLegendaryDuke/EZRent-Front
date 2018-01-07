@@ -6,9 +6,9 @@ class GoogleMap extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showingInfoWindow: props.showingInfoWindow,
-            activeMarker: props.activeMarker,
-            selectedPlace: props.selectedPlace
+            selectedPlace: props.selectedPlace,
+            showingInfoWindow: false,
+            infoWindowContent: null
         };
 
         // binding this to event-handler functions
@@ -17,10 +17,17 @@ class GoogleMap extends Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            showingInfoWindow: nextProps.showingInfoWindow,
-            activeMarker: nextProps.activeMarker,
             selectedPlace: nextProps.selectedPlace
         });
+        if(nextProps.selectedPlace) {
+            this.setState({
+                showingInfoWindow: true
+            })
+        }else {
+            this.setState({
+                showingInfoWindow: false
+            })
+        }
     }
 
     generateMarker = function (building) {
@@ -41,7 +48,11 @@ class GoogleMap extends Component {
                 anchor: new google.maps.Point(12, 40.8)
             };
 
-            if(this.state.selectedPlace && this.state.selectedPlace.name === building.id) {
+            if(this.state.selectedPlace && this.state.selectedPlace === building.id) {
+                this.setState({
+                    infoWindowContent: building.address
+                });
+
                 return (<Marker name={building.id}
                                 key={building.id}
                                 address={building.address}
@@ -75,7 +86,7 @@ class GoogleMap extends Component {
                             marker={this.state.activeMarker}
                             visible={this.state.showingInfoWindow}>
                             <div>
-                                <h1>{this.state.selectedPlace ? this.state.selectedPlace.address : ""}</h1>
+                                <h1>{this.state.infoWindowContent ? this.state.infoWindowContent : ""}</h1>
                             </div>
                         </InfoWindow>
                     </Map>

@@ -5,47 +5,39 @@ import GoogleMap from './GoogleMap'
 export default class MALMain extends Component {
     constructor(props) {
         super(props);
-        this.state = {city: props.city,
+        this.state = {
+            city: props.city,
             buildings: props.data.loading ? [] : props.data.buildings,
-            showingInfoWindow: false,
-            activeMarker: {},
-            selectedPlace: {}};
+            selectedPlace: null
+        };
 
         // binding this to event-handler functions
         this.onMarkerClick = this.onMarkerClick.bind(this);
-        this.onMapClicked = this.onMapClicked.bind(this);
-        this.hover = this.hover.bind(this);
+        this.select = this.select.bind(this);
         this.generateListItem = this.generateListItem.bind(this);
+        this.clearSelect = this.clearSelect.bind(this);
     }
 
     onMarkerClick = function(props, marker, e) {
         this.setState({
-            selectedPlace: props,
-            activeMarker: marker,
-            showingInfoWindow: true
+            selectedPlace: props.name
         });
-    };
-
-    onMapClicked = function(props) {
-        if (this.state.showingInfoWindow) {
-            this.setState({
-                showingInfoWindow: false,
-                activeMarker: null,
-                selectedPlace: null
-            })
-        }
     };
 
     componentWillReceiveProps(nextProps) {
         this.state.buildings = nextProps.data.buildings;
     }
 
-    hover = function(e) {
-        alert(e.currentTarget.dataset.value);
+    select = function(e) {
+        this.setState({selectedPlace: e.currentTarget.dataset.value});
+    };
+
+    clearSelect = function(e) {
+        this.setState({selectedPlace: null});
     };
 
     generateListItem = function (building) {
-        return (<List.Item key={building.id}><div onMouseOver={this.hover} data-value={building.id}>{building.address}</div></List.Item>)
+        return (<List.Item key={building.id}><div onMouseOver={this.select} onMouseOut={this.clearSelect} data-value={building.id}>{building.address}</div></List.Item>)
     };
 
     render() {
@@ -65,11 +57,9 @@ export default class MALMain extends Component {
                     <GoogleMap
                         city={city}
                         buildings={this.state.buildings}
-                        showingInfoWindow={this.state.showingInfoWindow}
-                        activeMarker={this.state.activeMarker}
                         selectedPlace={this.state.selectedPlace}
                         onMarkerClick={this.onMarkerClick}
-                        onMapClicked={this.onMapClicked}
+                        onMapClicked={this.clearSelect}
                     />
                 </Grid.Column>
                 <Grid.Column width={5} style={{padding: 0, height: "100%"}}>
