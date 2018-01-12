@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Header, Grid, Icon, Input } from 'semantic-ui-react'
+import { Container, Header, Grid, Icon, Input, Button } from 'semantic-ui-react'
 
 export default class HoverInput extends Component {
 
@@ -50,11 +50,11 @@ export default class HoverInput extends Component {
                 <Grid.Column width={8}>
                     <Input value={this.state.newValue} onChange={this.handleChange}></Input>
                 </Grid.Column>
-                <Grid.Column width={2}>
-                    <Icon name={"checkmark"} onClick={this.yesClick}/>
+                <Grid.Column width={2} style={{paddingLeft: 0, paddingRight: 0}}>
+                    <Button icon={"checkmark"} color={"green"} onClick={this.yesClick}/>
                 </Grid.Column>
-                <Grid.Column>
-                    <Icon name={"close"} onClick={this.noClick}/>
+                <Grid.Column style={{paddingLeft: 0, paddingRight: 0}}>
+                    <Button icon={"close"} color={"red"} onClick={this.noClick}/>
                 </Grid.Column>
             </Grid>;
 
@@ -69,7 +69,7 @@ export default class HoverInput extends Component {
                         </Header>
                     </Grid.Column>
                     <Grid.Column>
-                        <Icon name={"edit"} style={{display: this.state.showEdit && !this.state.edittable ? "inline" : "none"}} onClick={this.editClick}/>
+                        <Icon name={"pencil"} style={{display: this.state.showEdit && !this.state.edittable ? "inline" : "none", cursor:"pointer"}} onClick={this.editClick}/>
                     </Grid.Column>
                 </Grid>
                 {this.state.edittable ? edittableComponent : unedittableComponent}
