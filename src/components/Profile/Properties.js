@@ -11,7 +11,9 @@ export default class Properties extends Component {
 
     componentWillReceiveProps(nextProps) {
         if(!nextProps.data.loading) {
-
+            this.setState({
+                buildings: nextProps.data.buildings
+            })
         }
     }
 

@@ -13,7 +13,7 @@ const Main = (props) => (
         <Route path='/register' component={Register}/>
         <Route path='/login' component={Login}/>
         <Route path='/registerWithSocial' component={Register}/>
-        <Route path='/profile/:option' component={Profile}/>
+        <Route path='/profile/:option' render={(routerProps)=>(<Profile {...props} {...routerProps}/>)}/>
     </Switch>
 );
 

@@ -5,9 +5,9 @@ import Info from "./Info";
 import Properties from "./Properties"
 import gql from "graphql-tag";
 import {graphql} from "react-apollo/index";
-import App from "../App";
 
-const profileQuery = gql`
+function generateProperties(email) {
+    const profileQuery = gql`
             query properties($email: String!) {
               properties (email: $email) {
                 address
@@ -35,8 +35,10 @@ const profileQuery = gql`
               }
             }
         `;
-const PptWithData = graphql(profileQuery)(Properties);
+    const PptWithData = graphql(profileQuery, {options: {variables: {email: email}}})(Properties)
 
+    return PptWithData;
+}
 export default class Profile extends Component {
     constructor(props) {
         var option;
@@ -70,7 +72,7 @@ export default class Profile extends Component {
                 <Grid.Column>
                     <Switch>
                         <Route exact path={"/profile/info"} component={Info}/>
-                        <Route exact path={"/profile/properties"} component={PptWithData}/>
+                        <Route exact path={"/profile/properties"} component={this.props.user ? generateProperties(this.props.user.email) : null}/>
                     </Switch>
                 </Grid.Column>
             </Grid>
