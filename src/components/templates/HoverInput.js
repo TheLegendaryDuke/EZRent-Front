@@ -58,10 +58,10 @@ export default class HoverInput extends Component {
                 </Grid.Column>
             </Grid>;
 
-        const unedittableComponent = <div>{this.state.value}</div>;
+        const unedittableComponent = <div style={{padding:'10px', marginTop:'20px'}}>{this.state.value}</div>;
 
         return(
-            <Container onMouseOver={this.hover} onMouseOut={this.unhover}>
+            <Container onMouseOver={this.hover} onMouseOut={this.unhover} style={{padding: '15px'}}>
                 <Grid columns={2}>
                     <Grid.Column width={8}>
                         <Header size={this.state.header.size}>

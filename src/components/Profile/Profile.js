@@ -3,6 +3,39 @@ import {Switch, Route} from 'react-router-dom'
 import { Menu, Grid } from 'semantic-ui-react'
 import Info from "./Info";
 import Properties from "./Properties"
+import gql from "graphql-tag";
+import {graphql} from "react-apollo/index";
+import App from "../App";
+
+const profileQuery = gql`
+            query properties($email: String!) {
+              properties (email: $email) {
+                address
+                city {
+                  name
+                }
+                postalCode
+                verified
+                suites {
+                  rooms {
+                    name
+                    comment
+                    roomType
+                    rent
+                    available
+                    forRent
+                    publicSpace
+                  }
+                  floor
+                  name
+                  rent
+                  availability
+                  negotiable
+                }
+              }
+            }
+        `;
+const PptWithData = graphql(profileQuery)(Properties);
 
 export default class Profile extends Component {
     constructor(props) {
@@ -37,7 +70,7 @@ export default class Profile extends Component {
                 <Grid.Column>
                     <Switch>
                         <Route exact path={"/profile/info"} component={Info}/>
-                        <Route exact path={"/profile/properties"} component={Properties}/>
+                        <Route exact path={"/profile/properties"} component={PptWithData}/>
                     </Switch>
                 </Grid.Column>
             </Grid>
