@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import HoverInput from '../templates/HoverInput'
+import {Card} from 'semantic-ui-react'
 
 export default class Properties extends Component {
     constructor(props) {
@@ -19,7 +20,18 @@ export default class Properties extends Component {
 
     render() {
         return(
-            <HoverInput header={{size: "medium", content: "test"}} value={"test"}/>
+            <Card>
+                <Card.Header>
+                    Test
+                </Card.Header>
+                <Card.Content>
+                    <Card>
+                        <Card.Content>
+                            <HoverInput header={{size: "medium", content: "test"}} value={"test"}/>
+                        </Card.Content>
+                    </Card>
+                </Card.Content>
+            </Card>
         )
     }
 }
