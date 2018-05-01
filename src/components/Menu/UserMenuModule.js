@@ -7,6 +7,10 @@ import axios from 'axios'
 export default class UserMenuModule extends Component {
     logout = (e) => {window.location.href=BACKEND_ROOT+"/logout"};
 
+    loginHandler = (e) => {this.props.history.push('/login')};
+
+    registerHandler = (e) => {this.props.history.push('/register')};
+
     render() {
         const user = this.props.user;
 
@@ -26,12 +30,14 @@ export default class UserMenuModule extends Component {
         } else {
             return (
                 <Menu.Menu position='right'>
-                    <Menu.Item link>
-                        <Link to={'/register'}>Sign Up</Link>
-                    </Menu.Item>
-                    <Menu.Item link>
-                        <Link to={'/login'}>Login</Link>
-                    </Menu.Item>
+                    <Menu.Item
+                        name='register'
+                        onClick={this.registerHandler}
+                    />
+                    <Menu.Item
+                        name='login'
+                        onClick={this.loginHandler}
+                    />
                 </Menu.Menu>
             )
         }
