@@ -4,6 +4,7 @@ import Home from './Home/Home'
 import MAL from './MAL/MAL'
 import Register from './Register/Register'
 import Login from './Login/Login'
+import Profile from './Profile/Profile'
 
 const Main = (props) => (
     <Switch>
@@ -12,6 +13,7 @@ const Main = (props) => (
         <Route path='/register' component={Register}/>
         <Route path='/login' component={Login}/>
         <Route path='/registerWithSocial' component={Register}/>
+        <Route path='/profile/:option' render={(routerProps)=>(<Profile {...props} {...routerProps}/>)}/>
     </Switch>
 );
 
