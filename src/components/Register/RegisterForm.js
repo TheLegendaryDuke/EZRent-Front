@@ -5,8 +5,8 @@ export default class RegisterForm extends Component {
 
     constructor(props) {
         super(props);
-        if(props.social && !props.data.loading) {
-            this.state = {prefillEmail: props.data.socialInfo[0], prefillName: props.data.socialInfo[1], email: props.data.socialInfo[0], name: props.data.socialInfo[1]};
+        if(props.social) {
+            this.state = {prefillEmail: this.props.prefills.email, prefillName: this.props.prefills.name, email: this.props.prefills.email, name: this.props.prefills.name};
         }else {
             this.state = {prefillEmail: "", prefillName: "", name: "", email: ""};
         }
@@ -34,6 +34,8 @@ export default class RegisterForm extends Component {
         }).then(({ data }) => {
             if(data.register) {
                 window.location.href = "/";
+            }else {
+                alert("The email is already taken, use a different one.");
             }
         })
     }

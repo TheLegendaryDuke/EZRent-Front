@@ -12,7 +12,7 @@ const Main = (props) => (
         <Route path='/mal/:city' render={(routerProps)=>(<MAL {...props} {...routerProps}/>)}/>
         <Route path='/register' component={Register}/>
         <Route path='/login' component={Login}/>
-        <Route path='/registerWithSocial' component={Register}/>
+        <Route path='/registerWithSocial' render={(routerProps)=>(<Register {...props} {...routerProps}/>)}/>
         <Route path='/profile/:option' render={(routerProps)=>(<Profile {...props} {...routerProps}/>)}/>
     </Switch>
 );

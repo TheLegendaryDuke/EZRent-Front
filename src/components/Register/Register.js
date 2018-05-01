@@ -10,15 +10,12 @@ export default class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {socialLogin: props.match.path == "/registerWithSocial"}
+
+
     }
 
     render() {
         if(this.state.socialLogin) {
-            const query = gql`
-                query {
-                  socialInfo
-                }
-            `;
             const mutation = gql`
                 mutation register($email:String!, $username:String!, $password:String!) {
                   register(email: $email, username: $username, password: $password) {
@@ -27,12 +24,14 @@ export default class Register extends Component {
                   }
                 }
             `;
-            const FormWithData = compose(graphql(query), graphql(mutation))(RegisterForm);
+            const FormWithData = compose(graphql(mutation))(RegisterForm);
+            const queryString = require('query-string');
+            var parsed = queryString.parse(this.props.location.search);
             return(
                 <Grid columns={2} style={{flex: 1}}>
                     <Grid.Column width={8}>
                         <h2>Register with your email</h2>
-                        <FormWithData inputChange={this.inputChange} social={this.state.socialLogin} {...this.props}/>
+                        <FormWithData inputChange={this.inputChange} social={this.state.socialLogin} prefills={parsed} {...this.props}/>
                     </Grid.Column>
                     <Divider style={{position: 'relative', margin: 0, padding: 0}} vertical></Divider>
                 </Grid>

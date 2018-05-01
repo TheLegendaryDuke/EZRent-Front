@@ -10,16 +10,6 @@ export default class Login extends Component {
         this.state = {loading: false}
     }
 
-    handleResponse(value) {
-
-        alert("yep");
-
-        if (value.status == 302) {
-            alert("yep");
-            window.location.href = value.header.location;
-        }
-    }
-
     handleLogin = (e) => {
         //todo: handle the case "bad credentials"
         this.setState({loading: false});
