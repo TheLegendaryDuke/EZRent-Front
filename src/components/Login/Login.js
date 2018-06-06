@@ -7,7 +7,9 @@ import {BACKEND_ROOT} from "../../../api-config";
 export default class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {loading: false}
+        this.state = {loading: false};
+        this.cancelLogin = this.cancelLogin.bind(this);
+        this.handleLogin = this.handleLogin.bind(this)
     }
 
     handleLogin = (e) => {
@@ -24,11 +26,16 @@ export default class Login extends Component {
         });
     };
 
+
+    cancelLogin = function (e) {
+        this.props.history.push('/');
+    };
+
     render() {
         return (
             <Grid columns={2} style={{flex: 1}}>
                 <Grid.Column width={8}>
-                    <LoginForm handleLogin={this.handleLogin} loading={this.state.loading}/>
+                    <LoginForm handleLogin={this.handleLogin} loading={this.state.loading} cancelLogin={this.cancelLogin}/>
                 </Grid.Column>
                 <Divider style={{position: 'relative', margin: 0, padding: 0}} vertical>Or</Divider>
                 <Grid.Column width={7}>
