@@ -10,9 +10,12 @@ export default class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {socialLogin: props.match.path == "/registerWithSocial"}
-
-
+        this.cancelLogin = this.cancelLogin.bind(this);
     }
+
+    cancelLogin = function (e) {
+        this.props.history.push('/');
+    };
 
     render() {
         if(this.state.socialLogin) {
@@ -50,7 +53,7 @@ export default class Register extends Component {
                 <Grid columns={2} style={{flex: 1}}>
                     <Grid.Column width={8}>
                         <h2>Register with your email</h2>
-                        <FormWithData inputChange={this.inputChange} social={this.state.socialLogin} {...this.props}/>
+                        <FormWithData inputChange={this.inputChange} social={this.state.socialLogin} cancelLogin={this.cancelLogin} {...this.props}/>
                     </Grid.Column>
                     <Divider style={{position: 'relative', margin: 0, padding: 0}} vertical>Or</Divider>
                     <Grid.Column width={7}>

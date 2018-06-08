@@ -61,7 +61,7 @@ export default class RegisterForm extends Component {
                     <Button type={'submit'} primary>Submit</Button>
                 </Grid.Column>
                 <Grid.Column width={8}>
-                    <Button type={'button'} secondary>Cancel</Button>
+                    <Button type={'button'} secondary onClick={this.props.cancelLogin}>Cancel</Button>
                 </Grid.Column>
             </Grid>
         </Form>
