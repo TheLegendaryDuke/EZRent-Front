@@ -9,7 +9,7 @@ import { compose } from 'react-apollo';
 export default class Register extends Component {
     constructor(props) {
         super(props);
-        this.state = {socialLogin: props.match.path == "/registerWithSocial"}
+        this.state = {socialLogin: props.match.path === "/registerWithSocial"}
         this.cancelLogin = this.cancelLogin.bind(this);
     }
 
