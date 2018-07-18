@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import {Dropdown, Icon, Menu} from 'semantic-ui-react'
-import {Link} from 'react-router-dom'
 import {BACKEND_ROOT} from "../../../api-config";
-import axios from 'axios'
 
 export default class UserMenuModule extends Component {
     logout = (e) => {window.location.href=BACKEND_ROOT+"/logout"};

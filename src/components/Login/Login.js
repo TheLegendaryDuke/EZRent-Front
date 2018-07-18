@@ -12,17 +12,19 @@ export default class Login extends Component {
         this.handleLogin = this.handleLogin.bind(this)
     }
 
-    handleLogin = (e) => {
+    handleLogin = (vals) => {
         //todo: handle the case "bad credentials"
         this.setState({loading: false});
-        const target = e.target;
-        const email = target[0].value;
-        const password = target[1].value;
-        axios.post(BACKEND_ROOT + '/login', {email: email, password: password})
+
+        //this does not need to be specified once the two applications are moved to the same host (no cors)
+        axios.defaults.withCredentials = true;
+
+        //Note: use query params when making rest requests
+        axios.post(BACKEND_ROOT + '/login?email='+vals.email+'&password='+vals.password)
             .then((response) => {
                 this.props.history.push('/');
             }).catch((error) => {
-            this.setState({loginError: error, loading: false});
+                this.setState({loginError: error, loading: false});
         });
     };
 
