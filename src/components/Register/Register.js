@@ -18,8 +18,7 @@ export default class Register extends Component {
     };
 
     render() {
-        if(this.state.socialLogin) {
-            const mutation = gql`
+        const mutation = gql`
                 mutation register($email:String!, $username:String!, $password:String!) {
                   register(email: $email, username: $username, password: $password) {
                     name
@@ -27,35 +26,19 @@ export default class Register extends Component {
                   }
                 }
             `;
-            const FormWithData = compose(graphql(mutation))(RegisterForm);
-            const queryString = require('query-string');
-            var parsed = queryString.parse(this.props.location.search);
-            return(
-                <Grid columns={2} style={{flex: 1}}>
-                    <Grid.Column width={8}>
-                        <h2>Register with your email</h2>
-                        <FormWithData inputChange={this.inputChange} social={this.state.socialLogin} prefills={parsed} {...this.props}/>
-                    </Grid.Column>
-                    <Divider style={{position: 'relative', margin: 0, padding: 0}} vertical></Divider>
-                </Grid>
-            );
-        }else {
-            const query = gql`
-                mutation register($email:String!, $username:String!, $password:String!){
-                  register(email: $email, username: $username, password: $password) {
-                    name
-                    email
-                  }
-                }
-            `;
-            const FormWithData = graphql(query)(RegisterForm);
-            return (
-                <Grid columns={2} style={{flex: 1}}>
-                    <Grid.Column width={8}>
-                        <h2>Register with your email</h2>
-                        <FormWithData inputChange={this.inputChange} social={this.state.socialLogin} cancelLogin={this.cancelLogin} {...this.props}/>
-                    </Grid.Column>
-                    <Divider style={{position: 'relative', margin: 0, padding: 0}} vertical>Or</Divider>
+        const FormWithData = compose(graphql(mutation))(RegisterForm);
+
+        const queryString = require('query-string');
+        var parsed = this.state.socialLogin ? null : queryString.parse(this.props.location.search);
+
+        return(
+            <Grid columns={2} style={{flex: 1}}>
+                <Grid.Column width={8}>
+                    <h2>Register with your email</h2>
+                    <FormWithData inputChange={this.inputChange} social={this.state.socialLogin} prefills={parsed} {...this.props}/>
+                </Grid.Column>
+                <Divider style={{position: 'relative', margin: 0, padding: 0}} vertical />
+                {this.state.socialLogin ? null : (
                     <Grid.Column width={7}>
                         <h2>Use your social account</h2>
                         <form method={"post"} action={BACKEND_ROOT + "/login/facebook"}>
@@ -73,9 +56,8 @@ export default class Register extends Component {
                                 <Icon name='google plus'/> Google Plus
                             </Button>
                         </form>
-                    </Grid.Column>
-                </Grid>
-            )
-        }
+                    </Grid.Column>)}
+            </Grid>
+        );
     }
 }

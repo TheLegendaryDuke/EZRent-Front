@@ -22,7 +22,7 @@ export default class Login extends Component {
         //Note: use query params when making rest requests
         axios.post(BACKEND_ROOT + '/login?email='+vals.email+'&password='+vals.password)
             .then((response) => {
-                this.props.history.push('/');
+                window.location.href = "/";
             }).catch((error) => {
                 this.setState({loginError: error, loading: false});
         });

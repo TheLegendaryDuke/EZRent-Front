@@ -45,27 +45,27 @@ export default class RegisterForm extends Component {
 
         return (
             <Form onSubmit={this.register}>
-            <Form.Field required>
-                <label>Username</label>
-                <Input icon={'user'} iconPosition={'left'} placeholder={'Username'} name={'name'} onChange={this.inputChange} value={this.state.name}/>
-            </Form.Field>
-            <Form.Field required>
-                <label>Password</label>
-                <Input icon={'lock'} iconPosition={'left'} placeholder={'Password'} type={'password'} name={'password'} onChange={this.inputChange} value={this.state.password}/>
-            </Form.Field>
-            <Form.Field required>
-                <label>Email</label>
-                <Input icon={'mail'} iconPosition={'left'} placeholder={'Email'} type={'email'} name={'email'} onChange={this.inputChange} value={this.state.email}/>
-            </Form.Field>
-            <Grid columns={2}>
-                <Grid.Column width={8}>
-                    <Button type={'submit'} primary>Submit</Button>
-                </Grid.Column>
-                <Grid.Column width={8}>
-                    <Button type={'button'} secondary onClick={this.props.cancelLogin}>Cancel</Button>
-                </Grid.Column>
-            </Grid>
-        </Form>
+                <Form.Field required>
+                    <label>Username</label>
+                    <Input icon={'user'} iconPosition={'left'} placeholder={'Username'} name={'name'} onChange={this.inputChange} value={this.state.name}/>
+                </Form.Field>
+                <Form.Field required>
+                    <label>Password</label>
+                    <Input icon={'lock'} iconPosition={'left'} placeholder={'Password'} type={'password'} name={'password'} onChange={this.inputChange} value={this.state.password}/>
+                </Form.Field>
+                <Form.Field required>
+                    <label>Email</label>
+                    <Input icon={'mail'} iconPosition={'left'} placeholder={'Email'} type={'email'} name={'email'} onChange={this.inputChange} value={this.state.email}/>
+                </Form.Field>
+                <Grid columns={2}>
+                    <Grid.Column width={8}>
+                        <Button type={'submit'} primary>Submit</Button>
+                    </Grid.Column>
+                    <Grid.Column width={8}>
+                        <Button type={'button'} secondary onClick={this.props.cancelLogin}>Cancel</Button>
+                    </Grid.Column>
+                </Grid>
+            </Form>
         )
     }
 }
