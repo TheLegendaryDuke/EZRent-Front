@@ -37,7 +37,7 @@ export default class Profile extends Component {
                 <Grid.Column>
                     <Switch>
                         <Route exact path={"/profile/info"} component={Info}/>
-                        <Route exact path={"/profile/properties"} render={this.props.user ? (<Properties email={this.props.user.email}/>) : null}/>
+                        <Route exact path={"/profile/properties"} render={(props) => {return this.props.user ? (<Properties email={this.props.user.email}/>) : null}}/>
                     </Switch>
                 </Grid.Column>
             </Grid>
