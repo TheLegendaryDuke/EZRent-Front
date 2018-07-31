@@ -9,7 +9,7 @@ import { compose } from 'react-apollo';
 export default class Register extends Component {
     constructor(props) {
         super(props);
-        this.state = {socialLogin: props.match.path === "/registerWithSocial"}
+        this.state = {socialLogin: props.match.path === "/registerWithSocial"};
         this.cancelLogin = this.cancelLogin.bind(this);
     }
 
@@ -29,7 +29,7 @@ export default class Register extends Component {
         const FormWithData = compose(graphql(mutation))(RegisterForm);
 
         const queryString = require('query-string');
-        var parsed = this.state.socialLogin ? null : queryString.parse(this.props.location.search);
+        var parsed = this.state.socialLogin ? queryString.parse(this.props.location.search) : null;
 
         return(
             <Grid columns={2} style={{flex: 1}}>
