@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Dropdown } from 'semantic-ui-react'
-import history from './History'
 
 export default class TADropDown extends Component {
 
@@ -12,6 +11,7 @@ export default class TADropDown extends Component {
             link: props.link,
             value: props.value
         }
+        this.onClickHandler = this.onClickHandler.bind(this)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -20,7 +20,7 @@ export default class TADropDown extends Component {
 
     onClickHandler = (e, data) => {
         if(this.state.link && data.value !== this.state.value) {
-            history.push(this.props.link + data.value);
+            this.props.history.push(this.props.link + data.value);
             this.state.value = data.value;
         }
     };
