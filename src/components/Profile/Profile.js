@@ -21,7 +21,10 @@ export default class Profile extends Component {
         this.state = {activeItem: option};
     }
 
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+    handleItemClick = (e, { name }) => {
+        this.setState({ activeItem: name });
+        this.props.history.push("/profile/"+name.toLowerCase());
+    }
 
     render() {
         const { activeItem } = this.state;
