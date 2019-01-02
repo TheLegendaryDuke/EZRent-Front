@@ -20,10 +20,7 @@ export default class Register extends Component {
     render() {
         const mutation = gql`
                 mutation register($email:String!, $username:String!, $password:String!) {
-                  register(email: $email, username: $username, password: $password) {
-                    name
-                    email
-                  }
+                  register(email: $email, username: $username, password: $password)
                 }
             `;
         const FormWithData = compose(graphql(mutation))(RegisterForm);

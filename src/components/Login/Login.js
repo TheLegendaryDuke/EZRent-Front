@@ -22,7 +22,12 @@ export default class Login extends Component {
         //Note: use query params when making rest requests
         axios.post(BACKEND_ROOT + '/login?email='+vals.email+'&password='+vals.password)
             .then((response) => {
-                window.location.href = "/";
+                if (response.data === "login failed") {
+                    alert("Login failed!")
+                }else {
+                    localStorage.setItem("jwt", response.data)
+                    window.location.href = "/";
+                }
             }).catch((error) => {
                 this.setState({loginError: error, loading: false});
         });
@@ -43,17 +48,17 @@ export default class Login extends Component {
                 <Grid.Column width={7}>
                     <h2>Login using social logins</h2>
                     {/*Note: not using axios since cors enforces a stricter rule on API calls*/}
-                    <form method={"post"} action={BACKEND_ROOT + "/login/facebook"}>
+                    <form method={"post"} action={BACKEND_ROOT + "/signin/facebook"}>
                         <Button color='facebook'>
                             <Icon name='facebook'/> Facebook
                         </Button>
                     </form>
-                    <form method={"post"} action={BACKEND_ROOT + "/login/twitter"}>
+                    <form method={"post"} action={BACKEND_ROOT + "/signin/twitter"}>
                         <Button color='twitter'>
                             <Icon name='twitter'/> Twitter
                         </Button>
                     </form>
-                    <form method={"post"} action={BACKEND_ROOT + "/login/google"}>
+                    <form method={"post"} action={BACKEND_ROOT + "/signin/google"}>
                         <Button color='google plus'>
                             <Icon name='google plus'/> Google Plus
                         </Button>
