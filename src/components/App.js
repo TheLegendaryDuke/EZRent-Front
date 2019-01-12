@@ -11,10 +11,6 @@ const initQuery = gql`
                 latitude
                 longitude
               }
-              user {
-                name
-                email
-              }
             }
         `;
 
@@ -23,8 +19,8 @@ const App = () => graphQLQueryComponentWithDefaultHandlers(
     (data) => {
         return (
             <div style={{margin: 0, flex: 1, display: 'flex', flexFlow: 'column'}}>
-                <Header user={data.user}/>
-                <Main cities={data.cities} user={data.user}/>
+                <Header/>
+                <Main cities={data.cities}/>
             </div>
         )
     });

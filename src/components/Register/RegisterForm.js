@@ -34,6 +34,7 @@ export default class RegisterForm extends Component {
             variables: {email: this.state.email, username: this.state.name, password: this.state.password}
         }).then(({ data }) => {
             if(data.register) {
+                localStorage.setItem("jwt", data.register)
                 window.location.href = "/";
             }else {
                 alert("The email is already taken, use a different one.");

@@ -1,3 +1,5 @@
+var fs = require("fs");
+
 var config = {
     entry: './src/index.js',
 
@@ -10,7 +12,12 @@ var config = {
     devServer: {
         inline: true,
         port: 3000,
-        historyApiFallback: true
+        historyApiFallback: true,
+        https: {
+            key: fs.readFileSync('server.key'),
+            cert: fs.readFileSync('server.crt'),
+            ca: fs.readFileSync('rootCA.pem'),
+        },
     },
 
     module: {
