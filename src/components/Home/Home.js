@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../../css/home.css'
 import CitySearch from "./CitySearch";
 import {Link} from 'react-router-dom'
+import jwt_decode from "jwt-decode";
 
 export default class Home extends Component {
     constructor(props) {
@@ -14,11 +15,16 @@ export default class Home extends Component {
     }
 
     render() {
-        const user = this.props.user;
+        var jwt = localStorage.getItem('jwt');
+        try {
+            jwt = jwt_decode(jwt)
+        }catch (e) {
+            jwt = null
+        }
 
         var link;
 
-        if(user) {
+        if(jwt) {
             link = "/profile/properties";
         }else {
             link = "/register";

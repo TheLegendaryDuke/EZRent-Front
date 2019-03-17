@@ -12,12 +12,7 @@ var config = {
     devServer: {
         inline: true,
         port: 3000,
-        historyApiFallback: true,
-        https: {
-            key: fs.readFileSync('server.key'),
-            cert: fs.readFileSync('server.crt'),
-            ca: fs.readFileSync('rootCA.pem'),
-        },
+        historyApiFallback: true
     },
 
     module: {

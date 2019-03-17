@@ -21,8 +21,6 @@ export default class UserMenuModule extends Component {
             jwt = null
         }
 
-        console.log(jwt);
-
         if (jwt) {
             return (
                 <Menu.Menu position='right'>
